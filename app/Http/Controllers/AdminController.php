@@ -53,7 +53,6 @@ class AdminController extends Controller
                                                'end_date' => 'required|date|after:start_date',
                                                 'image' => 'required| image | max:2048',
                                             ]);
-                                            dd('a');
         $uniqueimageName = time().'-'.$request->file('image')->getClientOriginalName();
         $request->image->storeAs('/public', $uniqueimageName);
 
@@ -96,16 +95,26 @@ class AdminController extends Controller
             'title' => 'required',
             'start_date' =>  'required|date|after:yesterday', 
             'end_date' => 'required|date|after:start_date',
-            'image' => 'required| image | max:2048',
+            'image' => ' image | max:2048',
         ]);
-        $uniqueimageName = time().'-'.$request->file('image')->getClientOriginalName();
-        $request->image->storeAs('/public', $uniqueimageName);
+      
 
         $race = Race::find($request->id);
         $race->title =  $request->title;
         $race->start_date =  $request->start_date;
         $race->end_date =  $request->end_date;
-        $race->image =  Storage::url($uniqueimageName);
+        
+        if($request->has('image') )
+        {   
+            $uniqueimageName = time().'-'.$request->file('image')->getClientOriginalName();
+            $request->image->storeAs('/public', $uniqueimageName);
+            //Remove previous Image
+            $preImagePath = str_replace('/storage', 'public', $race->image);
+            $race->image =  Storage::url($uniqueimageName);
+            Storage::delete( $preImagePath); 
+        }
+        
+        
         $race->save();
 
         return back()->with(['success_message' => 'Race Updated Successfully!']);
@@ -114,9 +123,15 @@ class AdminController extends Controller
 
     public function deleteRace(Request $request)
     {
-        $result = Race::where('id', $request->race_id)->delete();
+        $selectedRace = Race::where('id', $request->race_id)->first();
+        $imagePath = str_replace('/storage', 'public', $selectedRace->image);
+        $result = $selectedRace->delete();
         if($result)
+        {
+            Storage::delete( $imagePath);
             return back()->with(['success_message' => 'Race Deleted Successfully!']);
+        }
+            
         else return back()->with(['error_message' => 'Something went wrong!']);
 
     }
