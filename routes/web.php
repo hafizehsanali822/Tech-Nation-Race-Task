@@ -20,6 +20,7 @@ Auth::routes(['register' => false]);
 Route::redirect('/', '/admin/races');
 //Manage Admin Routes 
 Route::group(['prefix' => 'admin/', 'middleware' => ['auth:web', 'checkadmin']], function(){
+    Route::get('users', [AdminController::class, 'indexUsers'])->name('admin.index.users');
     Route::get('races', [AdminController::class, 'index'])->name('admin.index.races');
     Route::get('create-race', [AdminController::class, 'showCreateRaceForm'])->name('admin.show.race.form');
     Route::Post('create-race', [AdminController::class, 'storeRace'])->name('admin.create.race');

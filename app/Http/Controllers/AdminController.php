@@ -22,9 +22,17 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
+       //dd(\Request::is('admin.index.users')) ;
        $races = Race::orderBy('created_at', 'desc')->paginate(20);
         return view('admin.index_race', compact('races'));
     }
+
+    public function indexUsers(Request $request)
+    {
+       $users = User::orderBy('created_at', 'desc')->paginate(20);
+        return view('admin.index-users', compact('users'));
+    }
+    
 
     /**
      * Show the form for creating a new resource.

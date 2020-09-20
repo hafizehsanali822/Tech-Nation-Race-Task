@@ -78,6 +78,7 @@
   <!-- /.modal-dialog -->
 </div>
 @endsection
+@section('specific-page-scripts')
 <script>
     function deleteRaceModel($id)
     {
@@ -85,4 +86,5 @@
         $('#modal-delete-confirm').modal('toggle');
     }
 </script>
+@endsection
 

@@ -76,24 +76,30 @@
                  <!-- Main Sidebar Container -->
                 <aside class="main-sidebar">
                     <!-- Sidebar Menu -->
-                     <nav class="mt-2">
+                     <nav class="mt-2 bg-white">
                         <ul class="nav nav-pills nav-sidebar flex-column" id="nav-link-container">
-                           <li class="nav-item" >
+                           <li  @if(\Route::currentRouteName() == 'admin.index.races') class="nav-item bg-warning"  @else class="nav-item" @endif >
                                 <a href="{{route('admin.index.races')}}" class="nav-link">
                                 <p>All Races</p>
                                 </a>
                             </li>
-                            <li class="nav-item" >
+                            <li @if(\Route::currentRouteName() == 'admin.index.users') class="nav-item bg-warning"  @else class="nav-item" @endif >
+                                <a href="{{route('admin.index.users')}}" class="nav-link">
+                                <p>All Users</p>
+                                </a>
+                            </li>
+                            <li @if(\Route::currentRouteName() == 'admin.show.race.form') class="nav-item bg-warning"  @else class="nav-item" @endif >
                                 <a href="{{route('admin.show.race.form')}}" class="nav-link">
                                 <p>Create Race</p>
                                 </a>
                             </li>
-                            <li class="nav-item" >
+                            <li @if(\Route::currentRouteName() == 'admin.race.winner.form') class="nav-item bg-warning"  @else class="nav-item" @endif >
                                 <a href="{{route('admin.race.winner.form')}}" class="nav-link">
                                 <p>Select Winner</p>
                                 </a>
                             </li>
-                            <li class="nav-item" >
+                           
+                            <li @if(\Route::currentRouteName() == 'admin.view.notifications') class="nav-item bg-warning"  @else class="nav-item" @endif >
                                 <a href="{{route('admin.view.notifications')}}" class="nav-link">
                                 <p>Notifications</p>
                                 </a>
