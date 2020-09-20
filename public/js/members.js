@@ -41,7 +41,7 @@ function MakeApiCall(method, actionUrl,  apiToken, postData)
             success: function (response) {
                 var response = response.success
                     _token = response.token
-                //console.log(response)
+                console.log(response)
                 $('#app').html(response.html);
                 var apiToken =  response.token;
                 if( response.token != undefined)
@@ -60,11 +60,21 @@ function MakeApiCall(method, actionUrl,  apiToken, postData)
                  
             },
             error: function (err) {
-            // console.log(" Can't do because: " + JSON.stringify(err));
-            var erroMessager = JSON.parse(err.responseText)
-            var erroMessager = erroMessager.error_message
-            $('#top-error-message').attr("hidden", false)
-            $('#top-error-message > span').text(erroMessager);
+                //console.log(" Can't do because: " + JSON.stringify(err));
+                var erroMessager = JSON.parse(err.responseText)
+                var erroMessager = erroMessager.error_message
+                console.log(erroMessager);
+
+                if(erroMessager != undefined && erroMessager.length != 0)
+                {   
+                    var messageHtml= '<ul>';
+                    Object.keys(erroMessager).forEach(key => {  messageHtml += '<li>'+erroMessager[key]+'</li>'  });
+                    messageHtml += '</ul>';
+                    $('#top-error-message').empty();
+                    $('#top-error-message').append(messageHtml);
+                    $('#top-error-message').attr("hidden", false)
+                 }
+
              }
         });
 

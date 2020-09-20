@@ -63,7 +63,6 @@
            </tbody>
        </table>
    </div>
-   {{ $races->links() }}
 </div>
 </main>
 <script src="{{ asset('js/members.js') }}" defer></script>

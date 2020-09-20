@@ -16,9 +16,6 @@ use App\Http\Controllers\NotificationController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::get('/member', [MemberController::class, 'showMememberSection'])->name('member.portion'); 
 Route::get('/member_login_form', [MemberController::class, 'showMemberLoginForm'])->name('member.login.form');
