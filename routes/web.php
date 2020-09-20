@@ -30,6 +30,6 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth:web', 'checkadmin']],
     Route::Post('annouce-winner', [AdminController::class, 'annouceRaceWinner'])->name('admin.race.annouce.winner');
     Route::get('admin-notifications', [AdminController::class, 'showAdminNotifications'])->name('admin.view.notifications');
     Route::post('send-push-notificaiton', [NotificationController::class, 'sendPushNotification'])->name('admin.send.push');
-    Route::post('save-device-token', [NotificationController::class, 'saveDeviceToken'])->name('save.device.token');
+    Route::post('save-device-token', [NotificationController::class, 'saveDeviceToken'])->name('save.device.token'); //for notification
 
 });
