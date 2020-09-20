@@ -41,7 +41,7 @@ function MakeApiCall(method, actionUrl,  apiToken, postData)
             success: function (response) {
                 var response = response.success
                     _token = response.token
-                console.log(response)
+                //console.log(response)
                 $('#app').html(response.html);
                 var apiToken =  response.token;
                 if( response.token != undefined)

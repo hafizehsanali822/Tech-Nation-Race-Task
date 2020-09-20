@@ -130,7 +130,6 @@ class MemberController extends Controller
            
             $races = Race::All() ;
             $token =$request->bearerToken();
-           
             $success['token'] =  $token;
             $success['message'] =Auth::user()->name . ' DisJoind from ' . $race->title .' Successfully';
             $success['html'] = view('members.index-races', compact('token','races', 'user' ))->render();

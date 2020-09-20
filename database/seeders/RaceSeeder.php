@@ -56,7 +56,15 @@ class RaceSeeder extends Seeder
 		$race5->image = 'race_5.png';
 		$race5->start_date = '2020-09-26';
 		$race5->end_date = '2020-10-26';
-        $race5->save();
+		$race5->save();
+		
+		//Assign races to Members
+		$race1->joinedMembers()->attach(2);
+		$race2->joinedMembers()->attach(4);
+		$race2->joinedMembers()->attach(3);
+		$race4->joinedMembers()->attach(4);
+		$race4->joinedMembers()->attach(2);
+		
 
     }
 }
