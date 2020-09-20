@@ -110,8 +110,11 @@ class MemberController extends Controller
             $success['html'] = view('members.index-races', compact('token','races', 'user' ))->render();
             return response()->json(['success' =>  $success], 200);
          }
-         else  return response()->json(['success' => 'Already Joined ,'. Auth::user()->name . ' already Joind ' . $race->title .' Successfully'], 200);
-       
+         else  
+         {
+            $success['message'] = 'You are Already Joined ' . $race->title . ' Yet!';
+             return response()->json(['success' => $success ], 200);
+         }
 
     }
 
@@ -133,7 +136,12 @@ class MemberController extends Controller
             $success['html'] = view('members.index-races', compact('token','races', 'user' ))->render();
             return response()->json(['success' => $success], 200);
         }
-        else  return response()->json(['success' => 'You are Not Joined ' . $race->title . ' Yet!' ], 200);
+        else 
+        
+        {
+            $success['message'] = 'You are Not Joined ' . $race->title . ' Yet!' ;
+            return response()->json(['success' =>  $success], 200);
+         }
 
     }
 

@@ -29,6 +29,8 @@
 <div class="container">
     
     <div class="row justify-content-center">
+       <div class="alert alert-success"  id="top-success-message" hidden> <span></span> </div>
+       <div class="alert alert-danger"  id="top-error-message" hidden> <span></span> </div>
         <table class="table">
             <thead>
                 <tr>
@@ -49,10 +51,11 @@
                         <td class="text-center">{{$race->joinedMembers->count()}}</td>
                         <td>{{$race->winnerMemeber->name ?? ''}}</td>
                         <td>
-                            <!-- <a class="btn btn-info" href="#">View</a> -->
-                            <a class="btn btn-info nav-btn-links" href="{{Route('race.join')}}" data-raceid="{{$race->id}}">Join</a>
+                          @if(!isset($race->winnerMemeber))
+                            <a class="btn btn-info nav-btn-links" href="{{Route('race.join')}}" disabled data-raceid="{{$race->id}}">Join</a>
                             <a class="btn btn-info nav-btn-links" href="{{Route('race.disjoin')}}" data-raceid="{{$race->id}}">DisJoin</a> 
-                       </td>
+                            @endif
+                        </td>
                     </tr>
 
                 @endforeach
@@ -62,7 +65,7 @@
 </div>
 </main>
 <script src="{{ asset('js/members.js') }}" defer></script>
-<script src="{{ asset('js/fcm_user.js') }}"></script>
+<script src="{{ asset('js/fcm.js') }}"></script>
 
 
 

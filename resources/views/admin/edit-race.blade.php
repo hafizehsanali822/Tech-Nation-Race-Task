@@ -22,7 +22,7 @@
         @endif
        <form action="{{route('admin.update.race')}}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <input type="hidden" name='id' value="{{$race->title}}">
+        <input type="hidden" name='id' value="{{$race->id}}">
           <div class="form-row">
             <div class="form-group col-md-8">
               <label for="title">Race  Title</label>
@@ -61,6 +61,8 @@
       </div><!--/. container-fluid -->
     </section> <!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<!-- /.modal -->
 
 @endsection
 

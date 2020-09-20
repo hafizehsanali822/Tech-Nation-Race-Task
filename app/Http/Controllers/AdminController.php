@@ -81,9 +81,35 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateRace(Request $request)
     {
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'start_date' =>  'required',
+            'end_date' => 'required',
+            'image' => 'required| image | max:2048',
+        ]);
+        $uniqueimageName = time().'-'.$request->file('image')->getClientOriginalName();
+        $request->image->storeAs('/public', $uniqueimageName);
+
+        $race = Race::find($request->id);
+        $race->title =  $request->title;
+        $race->start_date =  $request->start_date;
+        $race->end_date =  $request->end_date;
+        $race->image =  Storage::url($uniqueimageName);
+        $race->save();
+
+        return back()->with(['success_message' => 'Race Updated Successfully!']);
        
+    }
+
+    public function deleteRace(Request $request)
+    {
+        $result = Race::where('id', $request->race_id)->delete();
+        if($result)
+            return back()->with(['success_message' => 'Race Deleted Successfully!']);
+        else return back()->with(['error_message' => 'Something went wrong!']);
+
     }
 
     /**

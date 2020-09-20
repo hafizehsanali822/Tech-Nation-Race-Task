@@ -5,11 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 use App\Models\Race;
-use App\Models\RaceUser;
 use App\Observers\UserObserver;
 use App\Observers\RaceObserver;
-use App\Observers\RaceUserObserver;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -31,6 +28,5 @@ class AppServiceProvider extends ServiceProvider
     {
         User::observe(UserObserver::class);
         Race::observe(RaceObserver::class);
-        RaceUser::observe(RaceUserObserver::class);
     }
 }

@@ -141,10 +141,11 @@
                                             <td class="text-center">{{$race->joinedMembers->count()}}</td>
                                             <td>{{$race->winnerMemeber->name ?? ''}}</td>
                                             <td>
-                                                <!-- <a class="btn btn-info" href="#">View</a> -->
-                                                <a class="btn btn-info" onclick="joinDisJoinRace({{$race->id}}, '{{Route('race.join')}}')">Join</a>
-                                                <a class="btn btn-info"  onclick="joinDisJoinRace({{$race->id}}, '{{Route('race.disjoin')}}')">DisJoin</a> 
-                                        </td>
+                                                @if(!isset($race->winnerMemeber))
+                                                   <a class="btn btn-info" onclick="joinDisJoinRace({{$race->id}}, '{{Route('race.join')}}')">Join</a>
+                                                    <a class="btn btn-info"  onclick="joinDisJoinRace({{$race->id}}, '{{Route('race.disjoin')}}')">DisJoin</a> 
+                                                @endif
+                                                </td>
                                         </tr>
 
                                     @endforeach

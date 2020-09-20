@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth:web', 'checkadmin']],
     Route::get('edit-race/{id}', [AdminController::class, 'showEditRaceForm'])->name('admin.edit.race.form');
     Route::Post('update-race', [AdminController::class, 'updateRace'])->name('admin.update.race');
     Route::get('annouce-winner', [AdminController::class, 'showRaceWinnerForm'])->name('admin.race.winner.form');
+    Route::get('delete-race', [AdminController::class, 'deleteRace'])->name('admin.race.delete');
     Route::Post('annouce-winner', [AdminController::class, 'annouceRaceWinner'])->name('admin.race.annouce.winner');
     Route::get('admin-notifications', [AdminController::class, 'showAdminNotifications'])->name('admin.view.notifications');
     Route::post('send-push-notificaiton', [NotificationController::class, 'sendPushNotification'])->name('admin.send.push');
