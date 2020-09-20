@@ -12,6 +12,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <link href="{{ asset('css/app.css') }}" defer></link>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->

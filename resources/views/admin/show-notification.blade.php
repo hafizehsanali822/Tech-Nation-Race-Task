@@ -21,5 +21,6 @@
            </tbody>
        </table>
    </div>
+    <!-- <div class="text-center">{{$notifications->links()}}</div> -->
 </div>
 @endsection

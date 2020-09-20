@@ -54,7 +54,8 @@
                           @if(!isset($race->winnerMemeber))
                             <a class="btn btn-info nav-btn-links" href="{{Route('race.join')}}" disabled data-raceid="{{$race->id}}">Join</a>
                             <a class="btn btn-info nav-btn-links" href="{{Route('race.disjoin')}}" data-raceid="{{$race->id}}">DisJoin</a> 
-                            @endif
+                           @else <p>Winner Annouced</p>
+                          @endif
                         </td>
                     </tr>
 
@@ -62,6 +63,7 @@
            </tbody>
        </table>
    </div>
+   {{ $races->links() }}
 </div>
 </main>
 <script src="{{ asset('js/members.js') }}" defer></script>

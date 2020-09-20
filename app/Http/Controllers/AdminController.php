@@ -22,7 +22,7 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-       $races = Race::All();
+       $races = Race::orderBy('created_at', 'desc')->paginate(20);
         return view('admin.index_race', compact('races'));
     }
 
@@ -41,10 +41,11 @@ class AdminController extends Controller
     {
         $validatedData = $request->validate([
                                                 'title' => 'required|unique:Races',
-                                                'start_date' =>  'required',
-                                                'end_date' => 'required',
+                                                'start_date' =>  'required|date|after:yesterday', 
+                                               'end_date' => 'required|date|after:start_date',
                                                 'image' => 'required| image | max:2048',
                                             ]);
+                                            dd('a');
         $uniqueimageName = time().'-'.$request->file('image')->getClientOriginalName();
         $request->image->storeAs('/public', $uniqueimageName);
 
@@ -85,8 +86,8 @@ class AdminController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required',
-            'start_date' =>  'required',
-            'end_date' => 'required',
+            'start_date' =>  'required|date|after:yesterday', 
+            'end_date' => 'required|date|after:start_date',
             'image' => 'required| image | max:2048',
         ]);
         $uniqueimageName = time().'-'.$request->file('image')->getClientOriginalName();
@@ -140,7 +141,7 @@ class AdminController extends Controller
 
     public function showAdminNotifications()
     {
-         $notifications = Notification::All();
+         $notifications = Notification::orderBy('created_at', 'desc')->paginate(15);
          return view('admin.show-notification', compact('notifications'));
     }
 
