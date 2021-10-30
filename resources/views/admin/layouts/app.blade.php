@@ -45,6 +45,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @auth
+                          <li class="nav-item">
+                            <span class="badge badge-pill badge-primary" style="float:right;margin-bottom:-10px;"></span> <!-- your badge -->
+                            <a class="nav-link" href="messages">Notifications <span class="sr-only">(current)</span></a>
+                          </li>
                           <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

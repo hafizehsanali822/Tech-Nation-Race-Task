@@ -57,6 +57,13 @@
                 };
                 new Notification(noteTitle, noteOptions);
                 console.log(noteOptions );
+
+                var prevNotificationCount =  $('.badge').text();
+                if(prevNotificationCount != '')
+                   prevNotificationCount++;
+                else prevNotificationCount = 1;
+                $('.badge').text(prevNotificationCount)
+                console.log(prevNotificationCount );
             });
         });
 
